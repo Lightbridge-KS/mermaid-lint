@@ -1,0 +1,14 @@
+[
+  {
+    "file": "flowchart/invalid/label-with-at-sign.mmd",
+    "reason": "An unquoted label starts with \"@\". maid rejects it; the Mermaid 12.3.0 parser accepts it."
+  },
+  {
+    "file": "flowchart/invalid/label-with-at-slash.mmd",
+    "reason": "An unquoted label starts with \"@\" and holds a \"/\". maid rejects it; the Mermaid 12.3.0 parser accepts it."
+  },
+  {
+    "file": "flowchart/invalid/subgraph-id-collision.mmd",
+    "reason": "A node inside a subgraph has the same id as the subgraph. maid rejects it; the Mermaid 12.3.0 parser accepts it."
+  }
+]

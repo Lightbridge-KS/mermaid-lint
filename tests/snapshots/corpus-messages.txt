@@ -1,0 +1,549 @@
+flowchart/invalid/agent-schema-workflow.mmd:38:686 [syntax]
+  line: …f schema defines type object<br/>with properties name, age<br/>Return: {\"name\": \"John Doe\", \"age\": 25}<br/>NOT: {\"type\": \"object\", \"properties\": ...…
+  message: unexpected ": \" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/backticks-in-quoted-label.mmd:2:- [syntax]
+  line: A["`{% if %}` template"] --> B{Stage}
+  message: the parser cannot read part of this line
+  hint: a label that starts with "` is a Markdown string and must end with `"; remove the backticks, or put the whole label text between them
+
+flowchart/invalid/curly-in-quoted.mmd:3:31 [syntax]
+  line: E2 --> S2[Append 'tyk-trace-{id}' tag to Analytics Record]
+  message: unexpected "{" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/diamond-indexof-brackets.mmd:3:32 [syntax]
+  line: A[Line of Text] --> B{indexOf('[') + indexOf(']')}
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/diamond-parens-unquoted.mmd:2:26 [syntax]
+  line: C --> D{Return comment (even if only header exists)}
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/edge-label-backticks.mmd:7:19 [syntax]
+  line: B -- Detects `"` in unquoted label --> D[Error: FL-LABEL-QUOTE-IN-UNQUOTED];
+  message: unexpected a Markdown string; expected an arrow such as "-->", text or edge text
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/edge-label-bracket-encoded-braces.mmd:2:44 [syntax]
+  line: A[ProbeAgent emits] -->|ai.tool_calls: [&#123;name, args&#125;]| B[Before Fix]
+  message: unexpected "[" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/edge-label-brackets-with-quotes.mmd:2:29 [syntax]
+  line: B --|preGroupOperation["aggregated_graph_analytics"] == true|--> C{Route to Graph Analytics}
+  message: unexpected "aggregated_graph_analytics"; expected an arrow such as "-->", text or edge text
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/edge-label-brackets.mmd:5:16 [syntax]
+  line: D -->|run: [aggregate]| E[Aggregation Check]
+  message: unexpected "[" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/edge-label-curly-in-pipes.mmd:20:20 [syntax]
+  line: C -->|Resolve ${VAR}| B
+  message: unexpected "{" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/edge-label-parens.mmd:2:20 [syntax]
+  line: A -->|optional (external)| B
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/edge-label-quote-in-pipes.mmd:2:29 [syntax]
+  line: A[User Prompt] --|e.g. "navigate to example.com"|--> B(Oel Core);
+  message: unexpected "navigate to example.com"; expected an arrow such as "-->", text or edge text
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/edge-label-quoted.mmd:2:- [syntax]
+  line: mdx1["`ai-management/overview.mdx` frontmatter"]
+  message: the parser cannot read part of this line
+  hint: a label that starts with "` is a Markdown string and must end with `"; remove the backticks, or put the whole label text between them
+
+flowchart/invalid/empty-nodes.mmd:2:9 [syntax]
+  line: A[""] --> B[" "]
+  message: unexpected "]"; expected a quoted string, a Markdown string or text
+  hint: a label cannot be empty; write text inside the brackets or remove them
+
+flowchart/invalid/escaped-quotes-in-decision.mmd:6:38 [syntax]
+  line: B -- Yes --> D{"Is \"Driver\" AND \"AuthCheck.Path\" configured?"}
+  message: unexpected " AND \" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/interactions-click-call-missing-fn.mmd:5:1 [syntax]
+  line: (empty)
+  message: unexpected a function name; expected ";", the end of the line, the end of the diagram or function arguments
+  hint: -
+
+flowchart/invalid/interactions-click-call-parens.mmd:3:44 [syntax]
+  line: click A call openDetails() "Open details" _blank
+  message: unexpected a space; expected ";", the end of the line or the end of the diagram
+  hint: -
+
+flowchart/invalid/interactions-click-href.mmd:1:- [parser-crash]
+  line: flowchart TD
+  message: the Mermaid parser failed on this diagram (Cannot set properties of undefined (setting 'style')); the diagram is probably invalid, but the parser gives no position, so this is the first line of the diagram
+  hint: -
+
+flowchart/invalid/interactions-linkstyle-multi.mmd:5:15 [syntax]
+  line: linkStyle 0, 0, 5
+  message: unexpected a space; expected a number
+  hint: -
+
+flowchart/invalid/interactions-linkstyle-ranges.mmd:4:14 [syntax]
+  line: linkStyle 0:1 stroke:#f00,stroke-width:2px
+  message: unexpected ":"; expected ","
+  hint: -
+
+flowchart/invalid/invalid-arrow.mmd:2:7 [syntax]
+  line: A -> B
+  message: unexpected "-"
+  hint: "->" is not a flowchart arrow; use "-->"
+
+flowchart/invalid/invalid-class.mmd:3:12 [syntax]
+  line: class A
+  message: the line ends too early
+  hint: -
+
+flowchart/invalid/invalid-node-syntax.mmd:3:12 [syntax]
+  line: B --> C
+  message: the diagram ends inside a label
+  hint: a label above this line is not closed; add its closing bracket or its closing quote
+
+flowchart/invalid/invalid-subgraph.mmd:1:- [parser-crash]
+  line: flowchart TD
+  message: the Mermaid parser failed on this diagram (Cannot read properties of undefined (reading 'text')); the diagram is probably invalid, but the parser gives no position, so this is the first line of the diagram
+  hint: -
+
+flowchart/invalid/issue-60-parens-unquoted.mmd:3:39 [syntax]
+  line: D1{Tics cause functional impairment (pain, injury risk, or severe psychosocial distress)?}
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/label-bracket-in-unquoted.mmd:3:23 [syntax]
+  line: B --> C[bind_paths[]]
+  message: unexpected "[" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/label-curly-in-unquoted.mmd:3:29 [syntax]
+  line: B -->|Yes| C[Substitute {params}]
+  message: unexpected "{" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/label-leading-slash-unquoted.mmd:6:- [syntax]
+  line: E --> F[/dev/tty unavailable]
+  message: the parser cannot read part of this line
+  hint: a label on this line has text the parser cannot read; put the label text in double quotes
+
+flowchart/invalid/label-with-attribute-quotes.mmd:3:69 [syntax]
+  line: B --> C[HTML Output: select element with data-trigger-visibility="true"]
+  message: unexpected "true" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/label-with-function-call.mmd:7:22 [syntax]
+  line: F --> G[path.join(__dirname, 'output/{schema}/template.liquid')]
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/label-with-tip.mmd:7:21 [syntax]
+  line: F --> G[Print: "💡 Tip: Try using synonyms..."]
+  message: unexpected "💡 Tip: Try using synonyms..." inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/link-one-sided-marker.mmd:2:8 [syntax]
+  line: A --x--> B
+  message: unexpected "--> "
+  hint: -
+
+flowchart/invalid/linkstyle-id-unknown.mmd:3:13 [syntax]
+  line: linkStyle e999 stroke:#f00
+  message: unexpected "e999"; expected "default" or a number
+  hint: -
+
+flowchart/invalid/method-parens-in-unquoted-label.mmd:5:54 [syntax]
+  line: D -- Yes --> E[Convert error to string via .Error()];
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/missing-arrow.mmd:2:7 [syntax]
+  line: A B
+  message: unexpected "B"
+  hint: two names in a row need an arrow between them, for example "A --> B"
+
+flowchart/invalid/mixed-brackets.mmd:2:23 [syntax]
+  line: A[Text] --> B(Text]
+  message: unexpected "]"; expected ")" or text
+  hint: the closing bracket does not match the opening bracket of this node
+
+flowchart/invalid/mixed-quotes-in-labels.mmd:3:79 [syntax]
+  line: S1[Start Evaluation for Check 'C'] --> S2{For each dependency 'D' of "C"};
+  message: unexpected "C" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/model-initialize-call.mmd:3:28 [syntax]
+  line: B --> C[initializeModel() called]
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/no-diagram-type.mmd:1:- [unknown-diagram]
+  line: A --> B
+  message: no diagram type matches the first line "A --> B"
+  hint: start the diagram with its type, for example flowchart TD, sequenceDiagram, classDiagram, stateDiagram-v2, erDiagram or pie
+
+flowchart/invalid/note-block-endnote.mmd:4:8 [syntax]
+  line: note right of B
+  message: unexpected "right"
+  hint: a flowchart has no "note" line; use a node for the text
+
+flowchart/invalid/quotes-double-inside-single.mmd:2:16 [syntax]
+  line: A['She said "Hello"'] --> B
+  message: unexpected "Hello" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/quotes-in-node-labels.mmd:9:31 [syntax]
+  line: E -->|Yes| F[Log "skipping check..."];
+  message: unexpected "skipping check..." inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/round-parens-unquoted.mmd:2:35 [syntax]
+  line: B --> C(new CheckExecutionEngine(octokit));
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/title-unsupported.mmd:2:9 [syntax]
+  line: title Dependency Relationship
+  message: unexpected "Dependency"
+  hint: a flowchart has no "title" line; set the title in frontmatter before the diagram (---, title: My title, ---)
+
+flowchart/invalid/typed-parallelogram-parens.mmd:3:21 [syntax]
+  line: API[/Streams API\n(/streams-api)/]
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/typed-shapes-all.mmd:1:- [semantic]
+  line: flowchart LR
+  message: No such shape: parallelogram (the parser gives no position; this is the first line of the diagram)
+  hint: -
+
+flowchart/invalid/typed-shapes-unknowns.mmd:1:- [semantic]
+  line: flowchart TD
+  message: No such shape: rhombus (the parser gives no position; this is the first line of the diagram)
+  hint: -
+
+flowchart/invalid/unclosed-bracket.mmd:3:12 [syntax]
+  line: B --> C
+  message: the diagram ends inside a label
+  hint: a label above this line is not closed; add its closing bracket or its closing quote
+
+flowchart/invalid/unclosed-quote-in-label.mmd:5:1 [syntax]
+  line: (empty)
+  message: the diagram ends inside a label
+  hint: a label above this line is not closed; add its closing bracket or its closing quote
+
+flowchart/invalid/unescaped-quotes-in-decision.mmd:3:32 [syntax]
+  line: B -- Yes --> C{"Is "Driver" configured?"}
+  message: unexpected " configured?" inside a label
+  hint: a double quote inside a label ends the label; put the whole label in one pair of double quotes and write #quot; for each quote inside it
+
+flowchart/invalid/unmatched-end.mmd:3:5 [syntax]
+  line: end
+  message: unexpected "end"
+  hint: this "end" closes no subgraph; remove it or add the "subgraph" line above. A node named "end" must be written "End" or "END"
+
+flowchart/invalid/unquoted-label-with-quotes.mmd:7:73 [syntax]
+  line: E[Component e.g., CheckExecutionEngine] --> F[Calls logger.debug("message", data)];
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/unquoted-parens-in-labels.mmd:7:35 [syntax]
+  line: B --> C{Attempt JSON.parse(stdout)};
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/unquoted-parens-with-backticks.mmd:3:22 [syntax]
+  line: G[JS Expressions (`fail_if`, `value_js`)] -- read via `memory` object --> C
+  message: unexpected "(" inside a label
+  hint: brackets inside a label need quotes; put the label text in double quotes: A["text (more)"] for a node, -->|"text (more)"| for an edge
+
+flowchart/invalid/wrong-direction.mmd:1:- [syntax]
+  line: flowchart XY
+  message: the parser cannot read part of this line
+  hint: the direction after "flowchart" must be TB, TD, BT, RL or LR
+
+sequence/invalid/and-in-alt-nested.mmd:4:5 [syntax]
+  line: and Illegal inside alt
+  message: unexpected "and"
+  hint: "and" belongs to a "par" block (par ... and ... end)
+
+sequence/invalid/and-in-alt.mmd:4:3 [syntax]
+  line: and
+  message: unexpected "and"
+  hint: "and" belongs to a "par" block (par ... and ... end)
+
+sequence/invalid/and-outside-par.mmd:3:3 [syntax]
+  line: and Also not allowed
+  message: unexpected "and"
+  hint: "and" belongs to a "par" block (par ... and ... end)
+
+sequence/invalid/autonumber-extraneous.mmd:2:20 [syntax]
+  line: autonumber 10 10 participant A
+  message: unexpected "participant"; expected the end of the line
+  hint: -
+
+sequence/invalid/autonumber-malformed.mmd:2:17 [syntax]
+  line: autonumber 10 ten
+  message: unexpected "ten"; expected the end of the line or a number
+  hint: -
+
+sequence/invalid/box-empty.mmd:5:9 [syntax]
+  line: A->>B: message
+  message: unexpected "A"; expected the end of the line, "end", "participant", "actor" or "destroy"
+  hint: a "box" holds only participant lines; close it with "end" before the first message or note
+
+sequence/invalid/box-unclosed.mmd:5:3 [syntax]
+  line: A->B: hi
+  message: unexpected "A"; expected the end of the line, "end", "participant", "actor" or "destroy"
+  hint: a "box" holds only participant lines; close it with "end" before the first message or note
+
+sequence/invalid/box-with-messages-and-alt.mmd:8:5 [syntax]
+  line: Gateway->>+loadBundle: Load API with existing bundle
+  message: unexpected "Gateway"; expected the end of the line, "end", "participant", "actor" or "destroy"
+  hint: a "box" holds only participant lines; close it with "end" before the first message or note
+
+sequence/invalid/box-with-messages.mmd:6:9 [syntax]
+  line: A->>B: message inside box
+  message: unexpected "A"; expected the end of the line, "end", "participant", "actor" or "destroy"
+  hint: a "box" holds only participant lines; close it with "end" before the first message or note
+
+sequence/invalid/box-with-notes.mmd:6:9 [syntax]
+  line: Note over A: note inside box
+  message: unexpected "Note"; expected the end of the line, "end", "participant", "actor" or "destroy"
+  hint: a "box" holds only participant lines; close it with "end" before the first message or note
+
+sequence/invalid/bullet-dash-lines.mmd:8:3 [syntax]
+  line: - PR context
+  message: unexpected "-"
+  hint: -
+
+sequence/invalid/create-malformed.mmd:2:10 [syntax]
+  line: create B
+  message: unexpected "B"; expected "participant", "actor" or "destroy"
+  hint: -
+
+sequence/invalid/create-missing-name.mmd:2:- [syntax]
+  line: create participant
+  message: the parser cannot read part of this line
+  hint: -
+
+sequence/invalid/critical-else.mmd:4:3 [syntax]
+  line: else Should not use else in critical
+  message: unexpected "else"
+  hint: "else" belongs to an "alt" block (alt ... else ... end); inside "critical" use "option"
+
+sequence/invalid/destroy-malformed.mmd:1:- [semantic]
+  line: sequenceDiagram
+  message: The destroyed participant undefined does not have an associated destroying message after its declaration. Please check the sequence diagram (the parser gives no position; this is the first line of the diagram)
+  hint: -
+
+sequence/invalid/details-and-properties.mmd:5:13 [syntax]
+  line: properties: retry=3, timeout=5s
+  message: unexpected ": retry=3, timeout=5s"; expected "()" or a message arrow such as "->>"
+  hint: -
+
+sequence/invalid/else-in-par-nested.mmd:4:5 [syntax]
+  line: else Wrong here
+  message: unexpected "else"
+  hint: "else" belongs to an "alt" block (alt ... else ... end); inside "critical" use "option"
+
+sequence/invalid/else-outside-alt.mmd:3:3 [syntax]
+  line: else Not allowed here
+  message: unexpected "else"
+  hint: "else" belongs to an "alt" block (alt ... else ... end); inside "critical" use "option"
+
+sequence/invalid/issue-69-semicolon-in-message.mmd:4:41 [syntax]
+  line: UI->>UI: Some text; with a semicolon
+  message: the line ends too early; expected "()" or a message arrow such as "->>"
+  hint: a ";" ends a statement in a sequence diagram; write #59; for a semicolon in text
+
+sequence/invalid/issue-note-over-multiline-hyphen-alias.mmd:15:21 [syntax]
+  line: Note over engineer
+  message: the line ends too early; expected "," or a colon and text (": text")
+  hint: the text after a colon is missing; write "A->>B: text" or "Note right of A: text"
+
+sequence/invalid/missing-colon.mmd:4:35 [syntax]
+  line: A->>B Message text without colon
+  message: the line ends too early; expected a colon and text (": text")
+  hint: the text after a colon is missing; write "A->>B: text" or "Note right of A: text"
+
+sequence/invalid/note-malformed.mmd:3:32 [syntax]
+  line: Note right of A Missing colon
+  message: the line ends too early; expected a colon and text (": text")
+  hint: the text after a colon is missing; write "A->>B: text" or "Note right of A: text"
+
+sequence/invalid/note-multiline-missing-colon.mmd:5:18 [syntax]
+  line: Note right of A
+  message: the line ends too early; expected a colon and text (": text")
+  hint: the text after a colon is missing; write "A->>B: text" or "Note right of A: text"
+
+sequence/invalid/option-in-par.mmd:3:5 [syntax]
+  line: option Retry
+  message: unexpected "option"
+  hint: "option" belongs to a "critical" block (critical ... option ... end)
+
+sequence/invalid/option-outside-critical.mmd:2:3 [syntax]
+  line: option Retry
+  message: unexpected "option"
+  hint: "option" belongs to a "critical" block (critical ... option ... end)
+
+sequence/invalid/title-and-accessibility.mmd:3:28 [syntax]
+  line: accTitle Accessible Title
+  message: the line ends too early; expected "()" or a message arrow such as "->>"
+  hint: -
+
+sequence/invalid/unmatched-end.mmd:3:3 [syntax]
+  line: end
+  message: unexpected "end"
+  hint: this "end" closes no block; remove it, or add the block start above (alt, opt, loop, par, critical, break, rect or box)
+
+sequence/invalid/wrong-arrow.mmd:4:6 [syntax]
+  line: A==>>B: Unknown arrow
+  message: unexpected ">"; expected the end of the line, ",", "()", a message arrow such as "->>" or a colon and text (": text")
+  hint: use a sequence arrow such as "->>", "-->>", "->", "-->", "-x" or "-)"
+
+class/invalid/generics-and-types.mmd:10:13 [syntax]
+  line: Repo : get(): Result<string,int>
+  message: unexpected ": Result<string,int>"; expected the end of the line or the end of the diagram
+  hint: -
+
+class/invalid/interface-example.mmd:2:- [syntax]
+  line: interface Animal {
+  message: the parser cannot read part of this line
+  hint: -
+
+class/invalid/invalid-relation.mmd:2:8 [syntax]
+  line: Foo -> Bar : wrong arrow
+  message: unexpected "Bar"; expected a relation such as "<|--"
+  hint: use a class relation such as "<|--", "*--", "o--", "-->", "..>" or "--"
+
+class/invalid/missing-rbrace.mmd:3:9 [syntax]
+  line: +bar()
+  message: the diagram ends too early; expected "}" or a class member
+  hint: a class body is not closed; add "}"
+
+class/invalid/namespace-missing-rbrace.mmd:2:16 [syntax]
+  line: namespace "Core Classes" {
+  message: unexpected "Core Classes"; expected a name, a number, "-", text or a name in backquotes
+  hint: -
+
+class/invalid/namespace-quoted-and-interface-keyword.mmd:4:16 [syntax]
+  line: namespace "ProbeAgent Core" {
+  message: unexpected "ProbeAgent Core"; expected a name, a number, "-", text or a name in backquotes
+  hint: -
+
+class/invalid/quoted-name-double-in-double.mmd:2:8 [syntax]
+  line: class "Logger "core"" as L
+  message: unexpected "Logger "; expected a name, a number, "-", text or a name in backquotes
+  hint: -
+
+class/invalid/relation-missing-target.mmd:2:10 [syntax]
+  line: Foo <|-- : extends
+  message: unexpected ": extends"
+  hint: -
+
+state/invalid/concurrency-adjacent.mmd:4:- [syntax]
+  line: ---
+  message: the parser cannot read part of this line
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/concurrency-at-end.mmd:4:- [syntax]
+  line: ---
+  message: the parser cannot read part of this line
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/concurrency-at-start.mmd:3:- [syntax]
+  line: ---
+  message: the parser cannot read part of this line
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/concurrency-outside-block.mmd:3:1 [syntax]
+  line: ---
+  message: unexpected "-"
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/concurrency-two-regions.mmd:4:- [syntax]
+  line: ---
+  message: the parser cannot read part of this line
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/header-missing.mmd:1:- [unknown-diagram]
+  line: A --> B
+  message: no diagram type matches the first line "A --> B"
+  hint: start the diagram with its type, for example flowchart TD, sequenceDiagram, classDiagram, stateDiagram-v2, erDiagram or pie
+
+state/invalid/invalid-arrow.mmd:2:6 [syntax]
+  line: Idle -> Running : start
+  message: unexpected "-"
+  hint: use "-->" for a transition
+
+state/invalid/markers-and-concurrency.mmd:4:- [syntax]
+  line: ---
+  message: the parser cannot read part of this line
+  hint: to separate concurrent regions inside a state, use a line with "--" (two hyphens)
+
+state/invalid/missing-rbrace.mmd:4:12 [syntax]
+  line: A --> [*]
+  message: the diagram ends too early
+  hint: a state block is not closed; add "}"
+
+state/invalid/note-glued-to-previous.mmd:4:- [syntax]
+  line: Auth --> [*]Note over Auth: Handles user auth
+  message: the parser cannot read part of this line
+  hint: -
+
+state/invalid/note-missing-colon.mmd:2:- [syntax]
+  line: Note right of A Missing colon
+  message: the parser cannot read part of this line
+  hint: the text after a colon is missing; write "note right of A: text"
+
+state/invalid/note-over-missing-colon.mmd:2:- [syntax]
+  line: Note over A,B Missing colon
+  message: the parser cannot read part of this line
+  hint: the text after a colon is missing; write "note right of A: text"
+
+pie/invalid/colon-only.mmd:2:3 [syntax]
+  line: :
+  message: unexpected ":"; expected the end of the diagram
+  hint: write each slice as "Label" : number, with the label in double quotes
+
+pie/invalid/double-in-double.mmd:2:13 [syntax]
+  line: "He said "Hi"" : 1
+  message: unexpected "Hi"
+  hint: write each slice as "Label" : number, with the label in double quotes
+
+pie/invalid/invalid-header.mmd:1:1 [syntax]
+  line: piee
+  message: unexpected "piee"
+  hint: -
+
+pie/invalid/missing-colon.mmd:3:10 [syntax]
+  line: "Dogs" 10
+  message: unexpected "10"; expected ":"
+  hint: write each slice as "Label" : number, with the label in double quotes
+
+pie/invalid/missing-label.mmd:2:3 [syntax]
+  line: : 10
+  message: unexpected ":"; expected the end of the diagram
+  hint: write each slice as "Label" : number, with the label in double quotes
+
+pie/invalid/missing-number.mmd:2:11 [syntax]
+  line: "Dogs" :
+  message: the line ends too early; expected a number
+  hint: write each slice as "Label" : number, with the label in double quotes
+
+pie/invalid/unclosed-quote.mmd:2:3 [syntax]
+  line: "Dogs : 10
+  message: unexpected ""Dogs"
+  hint: write each slice as "Label" : number, with the label in double quotes

@@ -1,7 +1,7 @@
 # mermaid-lint — agent instructions
 
 `mermaid-lint` is a CLI that lints Mermaid diagrams in Markdown files with the real
-Mermaid parser. From milestone M5 it ships one agent skill in `skill/mermaid-lint/`.
+Mermaid parser. It ships one agent skill in `skill/mermaid-lint/`.
 
 ## Read first
 
@@ -29,12 +29,17 @@ Commit hooks are in `.pre-commit-config.yaml`; install them once per clone with
 ## Rules
 
 - `src/engine.ts` is the only module that imports `mermaid` or `happy-dom`.
-- Some paths below arrive with later milestones (the corpus in M3, the skill in M5);
-  the progress overview says what exists now.
+  `src/line-map.ts` ports Mermaid's text preprocessing; re-check it against the new
+  Mermaid source on every version bump.
 - `mermaid` and `happy-dom` are pinned to exact versions. A version bump is a
-  deliberate change: run the corpus test, list every changed verdict in
-  `CHANGELOG.md`, and re-check the line-map tests.
+  deliberate change: run the tests, read the diff of
+  `tests/snapshots/corpus-messages.txt`, and list every changed verdict in
+  `CHANGELOG.md`.
+- `pnpm test -u` rewrites `tests/snapshots/corpus-messages.txt`. Read its diff before
+  a commit; it is the record of what users see.
 - `tests/fixtures/maid/` is a vendored corpus under its own licence. Do not edit or
-  reformat its files.
+  reformat its `.mmd` files or its `LICENSE`. `known-mismatches.json` in that
+  directory belongs to this project: when a Mermaid bump changes a verdict, add or
+  remove the entry there.
 - A change to flags, exit codes, rule names, the text format or the JSON keys is a
   contract change: update the design doc, `--help`, the README and the skill together.

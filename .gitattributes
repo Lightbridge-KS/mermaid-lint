@@ -1,0 +1,2 @@
+# Fixtures are test data: keep their bytes and line ends as they are.
+tests/fixtures/** -text

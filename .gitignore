@@ -1,4 +1,6 @@
 node_modules/
+# A fixture that proves directory scans skip node_modules.
+!tests/fixtures/**/node_modules/
 dist/
 _playground/
 *.tsbuildinfo
