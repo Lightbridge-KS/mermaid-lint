@@ -1,0 +1,5 @@
+node_modules/
+dist/
+_playground/
+*.tsbuildinfo
+.DS_Store

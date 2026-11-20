@@ -1,0 +1,33 @@
+# Commit hooks, run by prek (or pre-commit). Install once per clone: `prek install`.
+#
+# Only fast checks run here: format, lint fixes, and a secrets scan.
+# Types and tests run in `pnpm check` and in CI.
+#
+# The local hooks call the project's own tools, so package.json stays the only
+# version pin. `gitleaks` must be on PATH.
+exclude: ^tests/fixtures/
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        exclude: ^tsconfig.*\.json$
+      - id: check-merge-conflict
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: biome
+        name: biome check --write
+        entry: pnpm exec biome check --write --error-on-warnings .
+        language: system
+        pass_filenames: false
+
+      - id: gitleaks
+        name: gitleaks (staged changes)
+        entry: gitleaks git --pre-commit --staged --redact --no-banner
+        language: system
+        pass_filenames: false

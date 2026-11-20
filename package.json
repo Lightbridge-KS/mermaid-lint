@@ -1,0 +1,44 @@
+{
+	"name": "mermaid-lint",
+	"version": "0.1.0",
+	"description": "Lint Mermaid diagrams in Markdown with the real Mermaid parser. Built for AI coding agents.",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"mermaid-lint": "dist/cli.js"
+	},
+	"files": [
+		"dist",
+		"skill"
+	],
+	"engines": {
+		"node": ">=22.12"
+	},
+	"packageManager": "pnpm@10.18.2",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check --error-on-warnings .",
+		"format": "biome check --write --error-on-warnings .",
+		"test": "vitest run",
+		"check": "pnpm lint && pnpm typecheck && pnpm build && pnpm test"
+	},
+	"keywords": [
+		"mermaid",
+		"lint",
+		"markdown",
+		"cli",
+		"agent"
+	],
+	"dependencies": {
+		"happy-dom": "21.0.4",
+		"mdast-util-from-markdown": "2.1.0",
+		"mermaid": "12.3.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.6.8",
+		"@types/node": "22.20.5",
+		"typescript": "7.0.2",
+		"vitest": "5.1.1"
+	}
+}
