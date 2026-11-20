@@ -26,12 +26,17 @@ Status values: **Not started**, **Planned** (task list written), **In progress**
 
 |          | Milestone                  | Status      |
 | -------- | -------------------------- | ----------- |
-| **Now**  | M5 — Skill, documents and v0.1.0 | In progress |
+| **Now**  | M5 — Skill, documents and v0.1.0 | Done |
+| **Next** | Nothing scheduled; see _Deferred_ | Not started |
 
-M0 to M4 are done as of 2026-11-20: the CLI checks bare diagrams and Markdown, reports
+v0.1.0 is tagged as of 2026-11-20 (`v0.1.0` at 2cf0b98). The repository is public and a
+draft release holds the changelog section; a maintainer publishes it.
+
+M0 to M5 are done as of 2026-11-20: the CLI checks bare diagrams and Markdown, reports
 file lines and columns in plain words with hints, has its three exit codes and
-`--json`, and agrees with the pinned parser on the whole corpus. M1 to M4 landed in
-one commit, because the review of M1 and M2 changed code that M3 and M4 build on.
+`--json`, and agrees with the pinned parser on the whole corpus. M1 to M5 landed in
+one commit (2cf0b98), because the review of M1 and M2 changed code that the later
+milestones build on.
 
 The design was written on 2026-11-20 from two throwaway spikes. The corpus gate (M3)
 comes before the hint work (M4) because the hint rules are written against corpus
@@ -60,9 +65,9 @@ with one command, locally and in CI.
 **Exit test:** `mermaid-lint good.mmd` exits `0` and `mermaid-lint bad.mmd` exits `1`
 with a `file:line` finding, run against the built binary.
 
-- [x] `engine`: DOM shim, one parser instance, five error shapes to one `Failure`
-- [x] `lint`, `report` (text and JSON) and `cli` with exit codes `0`, `1`, `2`
-- [x] CLI tests run the built binary
+- [x] `engine`: DOM shim, one parser instance, five error shapes to one `Failure` (2cf0b98)
+- [x] `lint`, `report` (text and JSON) and `cli` with exit codes `0`, `1`, `2` (2cf0b98)
+- [x] CLI tests run the built binary (2cf0b98)
 
 ### M2 — Markdown and line mapping
 
@@ -73,11 +78,11 @@ coordinates (R-01, R-03, R-08).
 standard input work; exit `2` cases print a cause and a fix.
 
 - [x] `extract`: fenced blocks from a CommonMark syntax tree; `empty-block`,
-      `unclosed-fence`
-- [x] `line-map`: port of the parser's text removal; parser line to source line
-- [x] Columns through list indents and block-quote markers
-- [x] Directories, standard input with `--stdin-kind`, file kind by extension
-- [x] Extraction tests, line-map tests, exit-`2` tests
+      `unclosed-fence` (2cf0b98)
+- [x] `line-map`: port of the parser's text removal; parser line to source line (2cf0b98)
+- [x] Columns through list indents and block-quote markers (2cf0b98)
+- [x] Directories, standard input with `--stdin-kind`, file kind by extension (2cf0b98)
+- [x] Extraction tests, line-map tests, exit-`2` tests (2cf0b98)
 
 ### M3 — Corpus gate
 
@@ -86,9 +91,9 @@ standard input work; exit `2` cases print a cause and a fix.
 **Exit test:** the corpus test passes with the mismatches listed in
 `tests/fixtures/maid/known-mismatches.json`.
 
-- [x] 208 corpus files, the ISC licence and a provenance note in `tests/fixtures/maid/`
-- [x] `known-mismatches.json`: 3 files labelled invalid that Mermaid 12.3.0 accepts
-- [x] Corpus test: verdicts, corpus size, and line shift under removed text
+- [x] 208 corpus files, the ISC licence and a provenance note in `tests/fixtures/maid/` (2cf0b98)
+- [x] `known-mismatches.json`: 3 files labelled invalid that Mermaid 12.3.0 accepts (2cf0b98)
+- [x] Corpus test: verdicts, corpus size, and line shift under removed text (2cf0b98)
 
 ### M4 — Errors that teach
 
@@ -98,11 +103,11 @@ have a curated hint (R-05). The normalisation of the five upstream error shapes 
 
 **Exit test:** the glossary tests and the corpus message snapshot pass.
 
-- [x] `hints`: token glossary; expected lists of five items or fewer
-- [x] Curated hints for flowchart, sequence, state, class and pie
+- [x] `hints`: token glossary; expected lists of five items or fewer (2cf0b98)
+- [x] Curated hints for flowchart, sequence, state, class and pie (2cf0b98)
 - [x] `tests/snapshots/corpus-messages.txt`: position, message and hint of every
-      invalid corpus file (83 of 110 have a hint)
-- [x] Source excerpts longer than 160 characters are cut around the column
+      invalid corpus file (83 of 110 have a hint) (2cf0b98)
+- [x] Source excerpts longer than 160 characters are cut around the column (2cf0b98)
 
 ### M5 — Skill, documents and v0.1.0
 
@@ -113,10 +118,10 @@ the repository is public; the version is tagged (R-07).
 resolves from the install tree; all success criteria in the design pass; tag
 `v0.1.0` exists.
 
-- [x] `skill/mermaid-lint/SKILL.md` (24 lines; no Mermaid syntax rule)
-- [x] README: install, use, exit codes, rules, JSON, skill, limits
-- [x] `CHANGELOG.md` section `[0.1.0]`
-- [ ] Tag `v0.1.0`; the repository is public; a draft release exists
+- [x] `skill/mermaid-lint/SKILL.md` (24 lines; no Mermaid syntax rule) (2cf0b98)
+- [x] README: install, use, exit codes, rules, JSON, skill, limits (2cf0b98)
+- [x] `CHANGELOG.md` section `[0.1.0]` (2cf0b98)
+- [x] Tag `v0.1.0` at 2cf0b98; the repository is public; a draft release exists
 
 Success criteria of the design, checked on 2026-11-20 on macOS with Node.js 26.13:
 
@@ -134,7 +139,8 @@ Also run on 2026-11-20 on the same machine: `mermaid-lint README.md skill docs
 AGENTS.md` exits `0` (the tool on its own documents); after `pnpm link --global`,
 `mermaid-lint --version` prints `mermaid-lint 0.1.0 (mermaid 12.3.0)` from another
 directory, and `$(pnpm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists
-(pnpm 10.18.2). CI on Node.js 22 and 24 has run only for the scaffold commit so far.
+(pnpm 10.18.2). CI passed on Node.js 22 and 24 for 2cf0b98 with 533 tests
+([workflow run](https://github.com/Lightbridge-KS/mermaid-lint/actions/runs/44759137568)).
 
 ## Deferred
 
@@ -144,6 +150,10 @@ directory, and `$(pnpm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists
 - **Release automation** (CI drafts the release from the changelog) — with npm
   publication.
 - **A render check** — out of scope; see _Known limits_ in the design.
+- **Newer major versions of the CI actions** — the workflow run for 2cf0b98
+  (2026-11-20, linked under M5) warns that
+  `actions/checkout@v4`, `actions/setup-node@v4` and `pnpm/action-setup@v4` target the
+  deprecated Node.js 20 runtime.
 
 ## Open questions
 
