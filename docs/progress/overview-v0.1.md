@@ -150,10 +150,6 @@ directory, and `$(pnpm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists
 - **Release automation** (CI drafts the release from the changelog) — with npm
   publication.
 - **A render check** — out of scope; see _Known limits_ in the design.
-- **Newer major versions of the CI actions** — the workflow run for 2cf0b98
-  (2026-11-20, linked under M5) warns that
-  `actions/checkout@v4`, `actions/setup-node@v4` and `pnpm/action-setup@v4` target the
-  deprecated Node.js 20 runtime.
 
 ## Open questions
 
