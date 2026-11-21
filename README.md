@@ -29,7 +29,12 @@ docs/arch.md:24:28: error[syntax] flowchart-v2: unexpected "(" inside a label
 ## Install
 
 Requirements: Node.js 22.12 or later and [pnpm](https://pnpm.io). The package is not
-on npm yet; install it from a checkout:
+on npm yet. There are two ways to install it from a checkout.
+
+### Option 1: link the checkout
+
+The global command runs the checkout's build. Use this to work on the tool: after a
+`pnpm build`, the command and its skill have your changes.
 
 ```bash
 git clone https://github.com/Lightbridge-KS/mermaid-lint.git
@@ -40,7 +45,31 @@ pnpm link --global
 ```
 
 `pnpm link --global` needs pnpm's global bin directory on `PATH`; `pnpm setup` adds it.
-Check the install with `mermaid-lint --version`.
+
+### Option 2: install a release as a package
+
+This installs a fixed copy of one release tag. Changes to a checkout do not change the
+installed command or its skill. Replace `v0.1.0` and `0.1.0` with the release you want:
+
+```bash
+git clone --branch v0.1.0 --depth 1 https://github.com/Lightbridge-KS/mermaid-lint.git
+cd mermaid-lint
+pnpm install --frozen-lockfile
+pnpm build
+pnpm pack
+npm install --global ./mermaid-lint-0.1.0.tgz
+```
+
+The command goes into npm's global bin directory (`npm prefix -g` shows the prefix),
+which must be on `PATH`. npm resolves the dependencies again and does not read
+`pnpm-lock.yaml`. `package.json` pins the direct dependencies to exact versions, but
+the transitive dependencies can differ from the lockfile. To upgrade, repeat the steps
+with the new tag. `npm install --global` replaces the old copy.
+
+Use one option at a time. If both are installed, the first match on `PATH` runs;
+`command -v mermaid-lint` shows which copy that is.
+
+Check either install with `mermaid-lint --version`.
 
 ## Use
 
@@ -122,12 +151,23 @@ The package ships a short skill for AI coding agents in
 tool and how to read the result. It holds no Mermaid syntax rules, because the tool
 gives the right hint at the moment of the error.
 
-The skill is inside the installed package, so it always matches the installed version.
-Link it into the agent's skill directory; do not copy it. For Claude Code:
+The skill is inside the installed package, so it always matches the installed command.
+Link it into the agent's skill directory; do not copy it. After option 1, the package
+is under pnpm's global root. For Claude Code:
 
 ```bash
-ln -s "$(pnpm root -g)/mermaid-lint/skill/mermaid-lint" ~/.claude/skills/mermaid-lint
+ln -sfn "$(pnpm root -g)/mermaid-lint/skill/mermaid-lint" ~/.claude/skills/mermaid-lint
 ```
+
+After option 2, the package is under npm's global root:
+
+```bash
+ln -sfn "$(npm root -g)/mermaid-lint/skill/mermaid-lint" ~/.claude/skills/mermaid-lint
+```
+
+For Codex, use the same source path with the destination
+`~/.codex/skills/mermaid-lint`. `-sfn` replaces an old link, for example after a change
+from option 1 to option 2.
 
 ## Limits
 

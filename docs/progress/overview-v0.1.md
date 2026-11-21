@@ -142,6 +142,16 @@ directory, and `$(pnpm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists
 (pnpm 10.18.2). CI passed on Node.js 22 and 24 for 2cf0b98 with 533 tests
 ([workflow run](https://github.com/Lightbridge-KS/mermaid-lint/actions/runs/44759137568)).
 
+- [x] README: a second install option, a release tag packed with `pnpm pack` and
+      installed with `npm install --global`; skill links for both options and Codex
+
+Option 2 was checked on 2026-11-21 on Ubuntu 26.04 with Node.js 26.13 and npm 11.20:
+a `--depth 1` clone of `v0.1.0` builds and packs `mermaid-lint-0.1.0.tgz`; after
+`npm install --global`, `mermaid-lint --version` prints `mermaid-lint 0.1.0
+(mermaid 12.3.0)`, a broken flowchart gives exit `1` with line, column and hint, and
+`$(npm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists. The tests were not
+run on that machine, because the test runner does not support Node.js 25 or later.
+
 ## Deferred
 
 - **`.gitignore` in directory scans** (R-09) — after v0.1.0.
