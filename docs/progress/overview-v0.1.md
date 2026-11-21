@@ -144,6 +144,7 @@ directory, and `$(pnpm root -g)/mermaid-lint/skill/mermaid-lint/SKILL.md` exists
 
 - [x] README: a second install option, a release tag packed with `pnpm pack` and
       installed with `npm install --global`; skill links for both options and Codex
+      (ac0b694)
 
 Option 2 was checked on 2026-11-21 on Ubuntu 26.04 with Node.js 26.13 and npm 11.20:
 a `--depth 1` clone of `v0.1.0` builds and packs `mermaid-lint-0.1.0.tgz`; after
